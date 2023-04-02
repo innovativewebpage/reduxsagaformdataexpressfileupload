@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<!--- HTML form data --->
+
+<form id="form">
+    <input name="username" type="text">
+    <input name="password "type="password">
+    <button type="submit">Submit</button>
+</form> 
+
+<script type="text/javascript">
+
+
+const form = document.getElementById('form');
+
+
+
+form.addEventListener('submit', function(e) {
+    // Prevent default behavior:
+    e.preventDefault();
+    // Create payload as new FormData object:
+    const payload = new FormData(form);
+    //console.log([…payload]);
+	
+	// Post the payload using Fetch:
+    fetch('http://localhost:5000/api/employee/read/create', {
+    method: 'POST',
+    body: payload,
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+})
+
+
+</script>
+
+
+</body>
+</html>
